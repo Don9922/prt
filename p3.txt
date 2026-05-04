@@ -1,0 +1,51 @@
+CREATE TABLE Employee (
+    emp_id     INT PRIMARY KEY,
+    name       VARCHAR(50) NOT NULL,
+    department VARCHAR(50),
+    salary     INT,
+    age        INT
+);
+
+INSERT INTO Employee VALUES (1, 'Alice',   'HR',      50000, 28);
+INSERT INTO Employee VALUES (2, 'Bob',     'IT',      70000, 35);
+INSERT INTO Employee VALUES (3, 'Charlie', 'Finance', 60000, 30);
+INSERT INTO Employee VALUES (4, 'Diana',   'IT',      80000, 32);
+INSERT INTO Employee VALUES (5, 'Eve',     'HR',      45000, 25);
+
+-- UPDATE using AND
+UPDATE Employee
+SET salary = 75000
+WHERE department = 'IT' AND age > 30;
+
+-- DELETE using OR
+DELETE FROM Employee
+WHERE department = 'Finance' OR salary < 48000;
+
+
+-- AND: Both conditions true
+SELECT * FROM Employee
+WHERE department = 'IT' AND salary > 60000;
+
+-- OR: Any one condition true
+SELECT * FROM Employee
+WHERE department = 'HR' OR department = 'IT';
+
+-- NOT: Opposite condition
+SELECT * FROM Employee
+WHERE NOT department = 'HR';
+
+-- AND + OR combined
+SELECT * FROM Employee
+WHERE (department = 'IT' OR department = 'HR') AND salary > 50000;
+
+-- BETWEEN
+SELECT * FROM Employee
+WHERE salary BETWEEN 50000 AND 80000;
+
+-- IN
+SELECT * FROM Employee
+WHERE department IN ('HR', 'IT');
+
+-- NOT IN
+SELECT * FROM Employee
+WHERE department NOT IN ('Finance');

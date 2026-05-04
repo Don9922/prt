@@ -1,0 +1,38 @@
+CREATE DATABASE SP;
+USE SP; 
+
+
+
+CREATE TABLE Department (
+    dept_id   INT PRIMARY KEY,
+    dept_name VARCHAR(50) NOT NULL UNIQUE
+);
+
+CREATE TABLE Student (
+    student_id   INT PRIMARY KEY,
+    name         VARCHAR(100) NOT NULL,
+    email        VARCHAR(100) UNIQUE,
+    age          INT CHECK (age >= 18),
+    dept_id      INT,
+    FOREIGN KEY (dept_id) REFERENCES Department(dept_id)
+);
+
+INSERT INTO Department VALUES (1, 'Computer Science');
+INSERT INTO Department VALUES (2, 'Information Technology');
+INSERT INTO Department VALUES (3, 'Electronics');
+
+INSERT INTO Student VALUES (101, 'Alice',   'alice@gmail.com',   20, 1);
+INSERT INTO Student VALUES (102, 'Bob',     'bob@gmail.com',     22, 2);
+INSERT INTO Student VALUES (103, 'Charlie', 'charlie@gmail.com', 19, 1);
+
+
+ALTER TABLE Student ADD COLUMN phone VARCHAR(15);
+
+ALTER TABLE Student MODIFY COLUMN phone VARCHAR(20);
+
+RENAME TABLE Student TO Students;
+
+TRUNCATE TABLE Students;
+
+DROP TABLE Students;
+DROP TABLE Department;
